@@ -16,7 +16,9 @@ let g:autoloaded_toggleMacIM = 1
 let s:chkCmd = "defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources|grep 'KeyboardLayout Name'"
 let s:toggleIM = 'echo "tell application \"System Events\" to key code 49 using {command down}" | osascript'
 
-let s:pre_is_cn = 1
+call system(s:chkCmd)
+let s:pre_is_cn = v:shell_error
+
 
 function! toggleMacIM#checkCurrentIM() 
   call system(s:chkCmd)
